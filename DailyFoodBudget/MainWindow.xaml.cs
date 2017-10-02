@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * TODO: Implementera separat InputHandler-klass.
+ * TODO: Implementera separat ErrorHandler-klass.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

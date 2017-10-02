@@ -1,7 +1,7 @@
 ﻿/*
  * Laboration 2 i kursen Grundläggande programmering
  * Av Sam Jansson, 2017-10-02
- * 
+ *
  * DailyFoodBudget: Ett simpelt program för att beräkna daglig matbudget.
  * 
  * Inkluderade klass(er):
