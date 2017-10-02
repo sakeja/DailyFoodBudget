@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DailyFoodBudget"
         mc:Ignorable="d"
-        Title="Daglig matbudget" Height="300" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Daglig matbudget" Height="225" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Width="250">
     <Grid>
-        <TextBox x:Name="TBox_Budget_Monthly" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Margin="10,177,0,0" ToolTip="Ange din totala månadsbudget i kronor"/>
+        <TextBox x:Name="TBox_Budget_Monthly" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Margin="115,41,0,0" ToolTip="Ange din totala månadsbudget i kronor."/>
         <Label Content="Månad:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
-        <ListBox x:Name="LBox_Months" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="10,41,0,0" ToolTip="Välj den månad du vill beräkna din dagliga matbudget för">
+        <ListBox x:Name="LBox_Months" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="10,41,0,0" ToolTip="Välj den månad du vill beräkna din dagliga matbudget för.">
             <ListBoxItem x:Name="LBoxItem_Jan" Content="Januari"/>
             <ListBoxItem x:Name="LBoxItem_Feb" Content="Februari"/>
             <ListBoxItem x:Name="LBoxItem_Mar" Content="Mars"/>
@@ -23,10 +23,10 @@
             <ListBoxItem x:Name="LBoxItem_Nov" Content="November"/>
             <ListBoxItem x:Name="LBoxItem_Dec" Content="December"/>
         </ListBox>
-        <Label Content="Månadsbudget:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,146,0,0"/>
-        <TextBox x:Name="TBox_Budget_Daily" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Margin="134,41,0,0" ToolTip="Här visas din beräknade matbudget för dagen" IsReadOnly="True"/>
-        <Label Content="Daglig matbudget:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,10,0,0"/>
-        <Button x:Name="Btn_Calc" Content="Beräkna" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="159,191,0,0" ToolTip="Beräkna dagens matbudget" Click="Btn_Calc_Click"/>
+        <Label Content="Månadsbudget:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="115,10,0,0"/>
+        <TextBox x:Name="TBox_Budget_Daily" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Margin="115,111,0,0" ToolTip="Här visas din beräknade matbudget för dagen." IsReadOnly="True"/>
+        <Label Content="Daglig matbudget:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="115,80,0,0"/>
+        <Button x:Name="Btn_Calc" Content="Beräkna" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="87.5,146,0,0" ToolTip="Beräkna daglig matbudget." Click="Btn_Calc_Click"/>
 
     </Grid>
 </Window>

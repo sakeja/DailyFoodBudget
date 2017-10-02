@@ -27,23 +27,42 @@ namespace DailyFoodBudget
 
         private void Btn_Calc_Click(object sender, RoutedEventArgs e)
         {
-            ListBoxItem LBox_Months_Selection;
-            string LBox_Months_Selection_Str = "";
-            decimal TBox_Budget_Monthly_Dec = 0;
+            ListBoxItem LBoxMonthsSelection;
+            string lboxMonthsSelectionStr = "";
+            decimal tboxBudgetMonthlyDec = 0;
 
             try
             {
-                LBox_Months_Selection =
+                LBoxMonthsSelection =
                     LBox_Months.SelectedItem as ListBoxItem;
 
-                if (LBox_Months_Selection == null)
+                if (LBoxMonthsSelection == null)
                     throw new ArgumentNullException();
 
-                LBox_Months_Selection_Str =
-                    LBox_Months_Selection.Content.ToString();
+                lboxMonthsSelectionStr =
+                    LBoxMonthsSelection.Content.ToString();
 
-                if (String.IsNullOrEmpty(LBox_Months_Selection_Str))
+                if (String.IsNullOrEmpty(lboxMonthsSelectionStr))
                     throw new ArgumentNullException();
+
+                try
+                {
+                    tboxBudgetMonthlyDec =
+                        Convert.ToDecimal(TBox_Budget_Monthly.Text);
+
+                    if (tboxBudgetMonthlyDec == 0) throw new FormatException();
+                }
+
+                catch (FormatException) { MessageBox.Show("Ange månadsbudget!"); }
+
+                catch (OverflowException)
+                {
+                    MessageBox.Show(
+                        "Ange en månadsbudget mellan " +
+                        decimal.MinValue + "kr" +
+                        " och " +
+                        decimal.MaxValue + "kr");
+                }
             }
 
             catch (ArgumentNullException)
@@ -51,31 +70,12 @@ namespace DailyFoodBudget
                 MessageBox.Show("Välj månad!");
             }
 
-            try
-            {
-                TBox_Budget_Monthly_Dec =
-                    Convert.ToDecimal(TBox_Budget_Monthly.Text);
-
-                if (TBox_Budget_Monthly_Dec == 0) throw new FormatException();
-            }
-
-            catch (FormatException) { MessageBox.Show("Ange månadsbudget!"); }
-
-            catch (OverflowException)
-            {
-                MessageBox.Show(
-                    "Ange ett värde mellan " +
-                    decimal.MinValue +
-                    " och " +
-                    decimal.MaxValue);
-            }
-
-            if (!(String.IsNullOrEmpty(LBox_Months_Selection_Str)) &&
-                TBox_Budget_Monthly_Dec != 0)
+            if (!(String.IsNullOrEmpty(lboxMonthsSelectionStr)) &&
+                tboxBudgetMonthlyDec != 0)
             {
                 Budget MyBudget = new Budget(
-                    LBox_Months_Selection_Str,
-                    TBox_Budget_Monthly_Dec);
+                    lboxMonthsSelectionStr,
+                    tboxBudgetMonthlyDec);
 
                 TBox_Budget_Daily.Text =
                     MyBudget.GetDailyBudget().ToString("0.##") + "kr";
