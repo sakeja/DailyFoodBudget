@@ -4,17 +4,23 @@ namespace DailyFoodBudget
 {
     class Month
     {
+        // Objekt för att representera nuvarande datum.
         private DateTime CurrentDate;
+        // Månaden att budgetera för.
         private string budgetMonth;
+        // Totalt antal dagar i månaden att budgetera för.
         private int budgetDays;
 
+        // Konstruktor.
         public Month(string month)
         {
             budgetMonth = month;
+            // Initiera objektet till nuvarande datum och tid.
             CurrentDate = DateTime.Now;
             SetBudgetDays();
         }
 
+        // Beräkna totalt antal dagar i månaden att budgetera för.
         public void SetBudgetDays()
         {
             switch (budgetMonth)
@@ -69,6 +75,7 @@ namespace DailyFoodBudget
             }
         }
 
+        // Metod för att hämta totalt antal dagar i budgetmånaden.
         public int GetDaysInMonth() { return budgetDays; }
     }
 }

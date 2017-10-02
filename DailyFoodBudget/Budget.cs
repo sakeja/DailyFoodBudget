@@ -7,6 +7,7 @@
             monthlyBudget,
             dailyBudget;
 
+        // Konstruktor
         public Budget(string input_month,
                       decimal input_budget)
         {
@@ -15,11 +16,13 @@
             SetDailyBudget();
         }
 
+        // Beräkna dagsbudget.
         public void SetDailyBudget()
         {
             dailyBudget = monthlyBudget / month.GetDaysInMonth();
         }
 
+        // Metod för att hämta dagsbudget.
         public decimal GetDailyBudget() { return dailyBudget; }
     }
 }

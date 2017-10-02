@@ -27,56 +27,87 @@ namespace DailyFoodBudget
 
         private void Btn_Calc_Click(object sender, RoutedEventArgs e)
         {
+            // Objekt som representerar vald månad.
             ListBoxItem LBoxMonthsSelection;
+            // Objektets innehåll (månad) representerat som sträng.
             string lboxMonthsSelectionStr = "";
+            // decimal-datatyp för finansiella tillämpningar.
             decimal tboxBudgetMonthlyDec = 0;
 
+            // Säkerställ att en månad är vald.
             try
             {
+                // Tilldela instansen vald månad.
                 LBoxMonthsSelection =
                     LBox_Months.SelectedItem as ListBoxItem;
 
+                /*
+                 * Om ingen månad är vald, trigga undantag då
+                 * LBoxMonthsSelection är null.
+                 */
                 if (LBoxMonthsSelection == null)
                     throw new ArgumentNullException();
 
+                // Hämta objektets innehåll (månaden) representerat som sträng.
                 lboxMonthsSelectionStr =
                     LBoxMonthsSelection.Content.ToString();
 
-                if (String.IsNullOrEmpty(lboxMonthsSelectionStr))
-                    throw new ArgumentNullException();
-
+                // Säkerställ att månadsbudget är angiven.
                 try
                 {
+                    /*
+                     * Konvertera angiven månadsbudget från sträng till decimal
+                     * datatyp.
+                     */
                     tboxBudgetMonthlyDec =
                         Convert.ToDecimal(TBox_Budget_Monthly.Text);
 
+                    /*
+                     * Convert.ToDecimal(String) returnerar 0 om String är null.
+                     * Trigga undantag om månadsbudget ej är angiven.
+                     */
                     if (tboxBudgetMonthlyDec == 0) throw new FormatException();
                 }
 
-                catch (FormatException) { MessageBox.Show("Ange månadsbudget!"); }
+                // Visa felmedd. om månadsbudget ej är angiven.
+                catch (FormatException)
+                {
+                    MessageBox.Show("Ange månadsbudget!", "Ett fel uppstod!");
+                }
 
+                /*
+                 * Visa felmedd. om månadsbudgeten är för stor eller liten för
+                 * datatypen decimal.
+                 */
                 catch (OverflowException)
                 {
                     MessageBox.Show(
                         "Ange en månadsbudget mellan " +
                         decimal.MinValue + "kr" +
                         " och " +
-                        decimal.MaxValue + "kr");
+                        decimal.MaxValue + "kr",
+                        "Ett fel uppstod!");
                 }
             }
 
+            // Visa felmeddelande om månad ej är angiven.
             catch (ArgumentNullException)
             {
-                MessageBox.Show("Välj månad!");
+                MessageBox.Show("Välj månad!", "Ett fel uppstod!");
             }
 
+            /*
+             * Säkerställ slutligen att en månad och dess tillhörande
+             * budgetbelopp är angivna innan Budget-klassen instansieras.
+             */
             if (!(String.IsNullOrEmpty(lboxMonthsSelectionStr)) &&
                 tboxBudgetMonthlyDec != 0)
             {
                 Budget MyBudget = new Budget(
-                    lboxMonthsSelectionStr,
-                    tboxBudgetMonthlyDec);
+                    input_month: lboxMonthsSelectionStr,
+                    input_budget: tboxBudgetMonthlyDec);
 
+                // Visa beräknad dagsbudget med två decimalers precision.
                 TBox_Budget_Daily.Text =
                     MyBudget.GetDailyBudget().ToString("0.##") + "kr";
             }
