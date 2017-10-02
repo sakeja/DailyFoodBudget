@@ -1,4 +1,17 @@
-﻿using System;
+﻿/*
+ * Laboration 2 i kursen Grundläggande programmering
+ * Av Sam Jansson, 2017-10-02
+ * 
+ * DailyFoodBudget: Ett simpelt program för att beräkna daglig matbudget.
+ * 
+ * Inkluderade klass(er):
+ * Budget.cs: Beräknar med hjälp av Month-klassen dagsbudgeten baserat på vald
+ * månad och totalt antal dagar i månaden.
+ * 
+ * Month.cs: Beräknar antal dagar att budgetera för baserat på vald månad.
+ */
+
+using System;
 
 namespace DailyFoodBudget
 {
