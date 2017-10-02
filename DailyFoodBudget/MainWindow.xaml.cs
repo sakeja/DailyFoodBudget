@@ -24,5 +24,13 @@ namespace DailyFoodBudget
         {
             InitializeComponent();
         }
+
+        private void Btn_Calc_Click(object sender, RoutedEventArgs e)
+        {
+            ListBoxItem LBox_Months_Selection = LBox_Months.SelectedItem as ListBoxItem;
+            Budget budget = new Budget(LBox_Months_Selection.Content.ToString(),
+                                       Convert.ToDecimal(TBox_Budget_Monthly.Text));
+            TBox_Budget_Daily.Text = budget.GetDailyBudget().ToString("0.##");
+        }
     }
 }
